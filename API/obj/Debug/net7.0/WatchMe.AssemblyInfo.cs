@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WatchMe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+58fcc669a7417e2bb0d607ef4a3dbceeadbaa4f7")]
 [assembly: System.Reflection.AssemblyProductAttribute("WatchMe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WatchMe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

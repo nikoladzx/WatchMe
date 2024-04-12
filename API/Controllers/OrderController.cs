@@ -26,50 +26,65 @@ namespace WatchMe.Controllers
             _ordersCollection = mongoDatabase.GetCollection<Order>("Orders");
             _basketsCollection = mongoDatabase.GetCollection<Basket>("Baskets");
         }
-       // [Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<Order>> GetOrders()
         {
             string username = HttpContext.User.FindFirstValue("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
-            var customer = await _customersCollection.Find(x=> x.Username == username).FirstOrDefaultAsync();
+            if (username == null)
+            {
+                return BadRequest("user with that username doesnt exist");
+            }
+            var customer = await _customersCollection
+                .Find(x=> x.Username == username)
+                .FirstOrDefaultAsync();
             
-            if (customer == null) return BadRequest("greska");
+            if (customer == null) 
+                return BadRequest("Customer thats logged in doesnt exist");
 
-            var orders = await _ordersCollection.Find(x=> x.UserId == customer.Username).ToListAsync();
-            if (orders == null) return BadRequest(" fsda");
+            var orders = await _ordersCollection
+                .Find(x=> x.UserId == customer.Username)
+                .ToListAsync();
+
             return Ok(orders);
             
 
         }
 
-      //  [Authorize]
+        [Authorize]
         [HttpPost("addorder")]
         public async Task<ActionResult<Order>> AddOrder()
         {
             string username = HttpContext.User.FindFirstValue("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
+            if (username == null)
+            {
+                return BadRequest("user with that username doesnt exist");
+            }
             var customer = await _customersCollection.Find(x=> x.Username == username).FirstOrDefaultAsync();
-            
-            if (customer == null) return BadRequest("greska");
-              var ord = await _ordersCollection
-                  .Find(x => x.UserId == username)
-                  .FirstOrDefaultAsync();
-              if (ord == null) { 
-                
-               }
+            if (customer == null) 
+                return BadRequest("Customer thats logged in doesnt exist");
+
             var basket = await _basketsCollection
-                        .Find(b => b.BuyerId == customer.Username).FirstOrDefaultAsync();
+                        .Find(b => b.BuyerId == customer.Username)
+                        .FirstOrDefaultAsync();
             // var products = basket.foreach (var item in collection)
             // {
-                var order = new Order{UserId = customer.Username, Status=0, TotalPrice=0};
+                var order = new Order
+                {
+                UserId = customer.Username,
+                Status=0, 
+                TotalPrice=0
+                };
                 for (int i =0; i< basket?.Items.Count; i++)
                 {
                 order.BasketItems.Add(basket.Items[i]);
                 order.TotalPrice+=basket.Items[i].Product.Price*basket.Items[i].Quantity;
                 }
-            if (order == null) return BadRequest(" fdsa");
+            if (order == null) 
+                return BadRequest("order doesnt exist");
             // }
             await _ordersCollection.InsertOneAsync(order);
-           return Ok(order);
+           return Ok("Uspesno dodat order");
             
         }
 

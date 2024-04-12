@@ -77,7 +77,7 @@ namespace WatchMe.Controllers
     return Ok(result);
 }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct(ProductDTO productDTO)
         {
@@ -100,7 +100,7 @@ namespace WatchMe.Controllers
             return Ok(newProduct);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("edit")]
         public async Task<ActionResult<Product>> EditProduct(string name, int? quantity, int? price)
         {
@@ -127,7 +127,7 @@ namespace WatchMe.Controllers
             return Ok(pr1);
         }
 
-       // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("delete")]
         public async Task<ActionResult<Product>> DeleteProduct(string name)
         {
@@ -136,10 +136,10 @@ namespace WatchMe.Controllers
             //         .FirstOrDefaultAsync();
             // if (product == null)
             //     return BadRequest("That model of the watch doesnt exist!");
-            await _productsCollection.DeleteOneAsync(x => x.Name == name);
+            var x=await _productsCollection.DeleteOneAsync(x => x.Name == name);
 
             //_context.Update(product);
-            return Ok();
+            return Ok(x);
         }
         }
     }

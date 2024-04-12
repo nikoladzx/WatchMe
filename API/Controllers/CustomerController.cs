@@ -19,6 +19,7 @@ namespace WatchMe.Controllers
         private readonly IMongoCollection<Basket> _basketsCollection;
 
         private readonly IMongoCollection<Order> _ordersCollection;
+        private readonly IMongoCollection<Admin> _adminsCollection;
 
         public CustomerController(IMongoDatabase mongoDatabase)
         {
@@ -26,6 +27,7 @@ namespace WatchMe.Controllers
             _creditcardsCollection = mongoDatabase.GetCollection<CreditCard>("CreditCards");
             _basketsCollection = mongoDatabase.GetCollection<Basket>("Baskets");
              _ordersCollection = mongoDatabase.GetCollection<Order>("Orders");
+              _adminsCollection = mongoDatabase.GetCollection<Admin>("Admins");
         }
 
         
@@ -33,17 +35,23 @@ namespace WatchMe.Controllers
         public async Task<ActionResult<Customer>> Get()
         {
             string username = HttpContext.User.FindFirstValue("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
+            if (username == null)
+                return BadRequest("No one is logged in");
             var customer = await _customersCollection.Find(x=> x.Username == username).FirstOrDefaultAsync();
             
-            if (customer == null) return BadRequest("greska");
+            if (customer == null) 
+                return BadRequest("Admin is logged in");
 
             return Ok(customer);
         }
 
        
         [HttpPost]
-        public async Task<ActionResult<Product>> CreateCustomer(RegisterDTO login)
-        {
+        public async Task<ActionResult<CustomerDTO>> CreateCustomer(RegisterDTO login)
+        {   
+            var admin = await _adminsCollection
+                .Find(adm => login.Username == adm.Username || login.Email == adm.Email)
+                .FirstOrDefaultAsync();
             var customer = await _customersCollection
                     .Find(cust => login.Username == cust.Username || login.Email == cust.Email)
                     .FirstOrDefaultAsync();
@@ -76,15 +84,19 @@ namespace WatchMe.Controllers
              await _creditcardsCollection.InsertOneAsync(cc);
             // await _ordersCollection.InsertOneAsync(o);
              await _basketsCollection.InsertOneAsync(b);
-            return Ok();
+            return Ok("Registracija uspesna!");
         }
 
-       // [Authorize]
+        [Authorize]
         [HttpPut("Update")]
         public async Task<ActionResult<Customer>> UpdateInfo(Customer customerDTO)
         {
             
-            await _customersCollection.ReplaceOneAsync(x=> x.UID==customerDTO.UID, customerDTO);
+            var x = await _customersCollection.ReplaceOneAsync(x=> x.UID==customerDTO.UID, customerDTO);
+            if (x == null)
+            {
+                return BadRequest("User thats tried to be updated doesnt even exist");
+            }
             return Ok(customerDTO);
         }
     }}

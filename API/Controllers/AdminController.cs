@@ -56,55 +56,5 @@ namespace WatchMe.Controllers
             await _adminsCollection.InsertOneAsync(newAdmin);
             return Ok(newAdmin);
         }
-        
-        // [Authorize]
-        // [HttpPut("Update")]
-        // public async Task<ActionResult<UserInfoDTO>> UpdateInfo(UserInfoDTO userInfoDTO)
-        // {
-            
-        //     var user = await _userManager.FindByNameAsync(User.Identity.Name);
-        //     if (user == null) return BadRequest("greska");
-        //     var info = await _context.Infos
-        //         .FirstOrDefaultAsync(x => x.UserId == user.Id);
-
-        //     info.Name=userInfoDTO.Name;
-        //     info.City=userInfoDTO.City;
-        //     info.Surname=userInfoDTO.Surname;
-        //     info.Street=userInfoDTO.Street;
-        //     info.Number=userInfoDTO.Number;
-        //     info.PhoneNumber=userInfoDTO.PhoneNumber;
-        //     info.AdditionalInfo=userInfoDTO.AdditionalInfo;
-
-        //     user.Email=userInfoDTO.Email;
-        //     user.NormalizedEmail=userInfoDTO.Email.ToUpper();
-        //     user.UserName=userInfoDTO.Username;
-        //     user.NormalizedUserName=userInfoDTO.Username.ToUpper();
-        //     var infodto = new UserInfoDTO
-        //     {
-        //         Email=userInfoDTO.Email,
-        //         Username=userInfoDTO.Username,
-        //         Name=userInfoDTO.Name,
-        //         Surname=userInfoDTO.Surname,
-        //         City=userInfoDTO.City,
-        //         Street=userInfoDTO.Street,
-        //         Number=userInfoDTO.Number,
-        //         PhoneNumber=userInfoDTO.PhoneNumber,
-        //         AdditionalInfo=userInfoDTO.AdditionalInfo
-
-
-        //     };
-        //     _context.Update(info);
-        //     _context.Update(user);
-        //     await _context.SaveChangesAsync();
-            
-
-        //     if (info == null) {
-        //         return BadRequest("greska");
-        //     }
-
-        //     //info.Where(i => i.Name == userInfoDTO.Name ?? i.Name);
-
-        //     return Ok(infodto);
-        // }
     }}
 

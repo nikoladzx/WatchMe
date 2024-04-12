@@ -104,8 +104,10 @@ namespace WatchMe.Controllers
     [HttpGet]
     [Route("getcurrentuser")]
             public async Task<ActionResult<UserDTO>> GetCurrentUser(){
-            //var user = await _userManager.FindByIdAsync(userId);
+            
             string username = HttpContext.User.FindFirstValue("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
+            if (username == null)
+                return BadRequest("No one is logged in");
             var customer = await _customerCollection.Find(x=> x.Username == username).FirstOrDefaultAsync();
             var admin = await _adminsCollection.Find(x=> x.Username == username).FirstOrDefaultAsync();
             string token ="";
@@ -121,7 +123,7 @@ namespace WatchMe.Controllers
                  role = "Admin";
             }
             if (customer == null && admin == null)
-            {return BadRequest("niko nije ulogovan");}
+                return BadRequest("niko nije ulogovan");
             //string token1= CreateToken(adm, role1);
             return new UserDTO{
                 Email=username,

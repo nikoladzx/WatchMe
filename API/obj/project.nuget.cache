@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DFdzOaaTgDfq6MkPowZO/Tbc/8K27+kXPMOnqgIx1Y8ftgY/plg6aQiHQIM6yAyjXXNuPD/g0bfXLZ6NVKbpJg==",
+  "dgSpecHash": "1nescVLxeWJbyKu5qYkKreoXkwRyTtV7cfGpJVJzPGHJNbdsbzUHZ9hsPW4dXJjJ1916Br55PmXJUgY6t+nl+A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\API\\WatchMe.csproj",
+  "projectFilePath": "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\mongo\\API\\WatchMe.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nikol\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\nikol\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\API\\WatchMe.csproj": {}
+    "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\mongo\\API\\WatchMe.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\API\\WatchMe.csproj": {
+    "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\mongo\\API\\WatchMe.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\API\\WatchMe.csproj",
+        "projectUniqueName": "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\mongo\\API\\WatchMe.csproj",
         "projectName": "WatchMe",
-        "projectPath": "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\API\\WatchMe.csproj",
+        "projectPath": "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\mongo\\API\\WatchMe.csproj",
         "packagesPath": "C:\\Users\\nikol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\API\\obj\\",
+        "outputPath": "C:\\Users\\nikol\\OneDrive\\Desktop\\mz\\mongo\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
