@@ -89,7 +89,6 @@ namespace WatchMe.Controllers
                 Type=string.IsNullOrWhiteSpace(productDTO.Type) ? "" : productDTO.Type,
                 Description=string.IsNullOrWhiteSpace(productDTO.Description) ? "" : productDTO.Description,
                 PictureUrl=string.IsNullOrWhiteSpace(productDTO.PictureUrl) ? "" : productDTO.PictureUrl,
-               // PictureUrl=productDTO.PictureUrl ? productDTO.PictureUrl : "",
                 Price=productDTO.Price > 0 ? productDTO.Price : 0,
                 QuantityInStock=productDTO.QuantityInStock > 0 ? productDTO.QuantityInStock : 0
             };
