@@ -71,9 +71,6 @@ namespace WatchMe.Controllers
 
     var result = await query.ToListAsync();
 
-    if (result.Count == 0)
-        return BadRequest("No matching products found.");
-
     return Ok(result);
 }
 
